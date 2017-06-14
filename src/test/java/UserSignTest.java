@@ -2,8 +2,8 @@
  * Copyright (C) 2009-2017 Hangzhou 2Dfire Technology Co., Ltd.All rights reserved
  */
 
-import com.caisl.publisher.EventClient;
-import com.caisl.event.OrderEvent;
+import com.achievement.publisher.EventClient;
+import com.achievement.event.OrderEvent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
