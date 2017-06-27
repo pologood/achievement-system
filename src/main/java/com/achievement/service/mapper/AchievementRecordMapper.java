@@ -1,6 +1,6 @@
-package com.caisl.service.mapper;
+package com.achievement.service.mapper;
 
-import com.caisl.domain.AchievementRecord;
+import com.achievement.domain.AchievementRecord;
 
 public interface AchievementRecordMapper {
     int deleteByPrimaryKey(String achievementRecordId);

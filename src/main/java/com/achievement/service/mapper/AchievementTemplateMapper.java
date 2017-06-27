@@ -1,6 +1,6 @@
-package com.caisl.service.mapper;
+package com.achievement.service.mapper;
 
-import com.caisl.domain.AchievementTemplate;
+import com.achievement.domain.AchievementTemplate;
 
 public interface AchievementTemplateMapper {
     int deleteByPrimaryKey(String achievementTemplateId);

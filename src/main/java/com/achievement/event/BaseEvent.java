@@ -1,21 +1,22 @@
 /*
  * Copyright (C) 2009-2017 Hangzhou 2Dfire Technology Co., Ltd.All rights reserved
  */
-package com.caisl.event;
+package com.achievement.event;
 
 /**
  * BaseEvent
  *
  * @author shinan
- * @since 2017-06-05
+ * @since 2017-06-13
  */
 public class BaseEvent {
     private Object event;
 
-    public BaseEvent(){
-
+    public Object getEvent() {
+        return event;
     }
-    public BaseEvent(Object event){
+
+    public void setEvent(Object event) {
         this.event = event;
     }
 }

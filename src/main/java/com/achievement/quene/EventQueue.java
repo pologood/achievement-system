@@ -2,11 +2,11 @@
  * Copyright (C) 2009-2017 Hangzhou 2Dfire Technology Co., Ltd.All rights reserved
  *//*
 
-package com.caisl.quene;
+package com.achievement.quene;
 
-import com.caisl.event.UserRegisterEvent;
-import com.caisl.factory.EventThreadFactory;
-import com.caisl.factory.UserRegisterEventFactory;
+import com.achievement.event.UserRegisterEvent;
+import com.achievement.factory.EventThreadFactory;
+import com.achievement.factory.UserRegisterEventFactory;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 

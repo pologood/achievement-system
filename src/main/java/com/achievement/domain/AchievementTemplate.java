@@ -1,4 +1,4 @@
-package com.caisl.domain;
+package com.achievement.domain;
 
 public class AchievementTemplate {
     private String achievementTemplateId;

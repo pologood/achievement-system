@@ -1,6 +1,6 @@
-package com.caisl.service.mapper;
+package com.achievement.service.mapper;
 
-import com.caisl.domain.AchievementPackage;
+import com.achievement.domain.AchievementPackage;
 
 public interface AchievementPackageMapper {
     AchievementPackage selectByPrimaryKey(String achievementPackageId);
