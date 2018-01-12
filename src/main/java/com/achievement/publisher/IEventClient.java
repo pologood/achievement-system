@@ -7,16 +7,18 @@ package com.achievement.publisher;
 import com.achievement.event.AchievementEvent;
 
 /**
- * IEventPublisher
+ * IEventClient
  *
- * @author caisl
- * @since 2017-06-08
+ * @author shinan
+ * @since 2017-06-22
  */
-public interface IEventPublisher<T extends AchievementEvent> {
+public interface IEventClient {
+
     /**
      * 发布事件
+     *
      * @param event
      * @return
      */
-    boolean publish(T event);
+    Boolean publish(AchievementEvent event);
 }

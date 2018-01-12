@@ -4,11 +4,13 @@
 package com.achievement.event;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * ConsumerEvent
  *
- * @author shinan
+ * @author caisl
+ * @desc 消费事件（消费支付模块）
  * @since 2017-06-13
  */
 public class ConsumerEvent extends AchievementEvent implements Serializable {
@@ -19,7 +21,7 @@ public class ConsumerEvent extends AchievementEvent implements Serializable {
      */
     private String payType;
     /**
-     * 消费去向 1-充值火会员 2-
+     * 消费去向 1-充值火会员
      */
     private int goods;
     /**
@@ -27,9 +29,16 @@ public class ConsumerEvent extends AchievementEvent implements Serializable {
      */
     private double fee;
     /**
-     * 优惠类型 （使用哪种优惠）
+     * 优惠数量 用了几中优惠
      */
-    private String offerType;
+    private int offerCount;
+
+    public ConsumerEvent(){
+
+    }
+    public ConsumerEvent(String entityId, List<String> customerRegisterIds, int source, int type) {
+        super(entityId, customerRegisterIds, source, type);
+    }
 
     public String getPayType() {
         return payType;
@@ -55,11 +64,11 @@ public class ConsumerEvent extends AchievementEvent implements Serializable {
         this.fee = fee;
     }
 
-    public String getOfferType() {
-        return offerType;
+    public int getOfferCount() {
+        return offerCount;
     }
 
-    public void setOfferType(String offerType) {
-        this.offerType = offerType;
+    public void setOfferCount(int offerCount) {
+        this.offerCount = offerCount;
     }
 }

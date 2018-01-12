@@ -6,7 +6,7 @@ package com.achievement.domain;
 /**
  * AchievementReward
  *
- * @author shinan
+ * @author caisl
  * @since 2017-06-13
  */
 public class AchievementReward {
@@ -15,8 +15,8 @@ public class AchievementReward {
      */
     private int fireSeed;
 
-    public AchievementReward(int fireSeed) {
-        this.fireSeed = fireSeed;
+    public AchievementReward() {
+
     }
 
     public int getFireSeed() {

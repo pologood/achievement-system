@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dfire.soa.consumer.fm.dao.mapper.AchievementRecordMapper">
+    <resultMap id="BaseResultMap" type="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+        <id column="achievement_record_id" property="achievementRecordId" jdbcType="VARCHAR"/>
+        <result column="customer_register_id" property="customerRegisterId" jdbcType="VARCHAR"/>
+        <result column="achievement_template_id" property="achievementTemplateId" jdbcType="VARCHAR"/>
+        <result column="achievement_package_id" property="achievementPackageId" jdbcType="VARCHAR"/>
+        <result column="fire_seed" property="fireSeed" jdbcType="INTEGER"/>
+        <result column="finish_time" property="finishTime" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="SMALLINT"/>
+        <result column="schedule" property="schedule" jdbcType="LONGVARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="op_time" property="opTime" jdbcType="BIGINT"/>
+        <result column="last_ver" property="lastVer" jdbcType="INTEGER"/>
+        <result column="is_valid" property="isValid" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    achievement_record_id, customer_register_id, achievement_template_id, achievement_package_id, fire_seed,
+    finish_time, status, schedule, create_time, op_time, last_ver, is_valid
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_record
+        where achievement_record_id = #{achievementRecordId,jdbcType=VARCHAR}
+        and is_valid = 1
+    </select>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_record
+        where customer_register_id = #{customerRegisterId,jdbcType=VARCHAR}
+        and achievement_template_id = #{achievementTemplateId,jdbcType=VARCHAR}
+        and is_valid = 1
+    </select>
+    <select id="selectRecords" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_record
+        where customer_register_id = #{customerRegisterId,jdbcType=VARCHAR}
+        <if test="achievementPackageId != '' ">
+            and achievement_package_id = #{achievementPackageId,jdbcType=VARCHAR}
+        </if>
+        <if test="status != -1">
+            and status = #{status,jdbcType=SMALLINT}
+        </if>
+        and is_valid =1
+    </select>
+    <select id="selectReward" resultType="java.lang.Integer">
+        select
+        fire_seed
+        from achievement_record
+        where customer_register_id = #{customerRegisterId,jdbcType=VARCHAR}
+        and status = 2
+        and is_valid =1
+    </select>
+    <select id="selectAchievementIds" resultType="java.lang.String">
+        select
+        achievement_template_id
+        from achievement_record
+        where customer_register_id = #{customerRegisterId,jdbcType=VARCHAR}
+        <if test="status != -1">
+            and status = #{status,jdbcType=SMALLINT}
+        </if>
+        and is_valid =1
+    </select>
+    <insert id="insert" parameterType="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+    insert into achievement_record (achievement_record_id, customer_register_id, 
+      achievement_template_id, achievement_package_id, fire_seed, finish_time,
+      status, schedule, create_time, 
+      op_time, last_ver, is_valid
+      )
+    values (#{achievementRecordId,jdbcType=VARCHAR}, #{customerRegisterId,jdbcType=VARCHAR}, 
+      #{achievementTemplateId,jdbcType=VARCHAR},#{achievementPackageId,jdbcType=VARCHAR},
+      #{fireSeed,jdbcType=INTEGER}, #{finishTime,jdbcType=BIGINT},
+      #{status,jdbcType=SMALLINT}, #{schedule,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, 
+      #{opTime,jdbcType=BIGINT}, #{lastVer,jdbcType=INTEGER}, #{isValid,jdbcType=TINYINT}
+      )
+  </insert>
+    <update id="updateRecord" parameterType="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+        update achievement_record
+        <set>
+            <if test="fireSeed != null">
+                fire_seed = #{fireSeed,jdbcType=INTEGER},
+            </if>
+            <if test="finishTime != null">
+                finish_time = #{finishTime,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="schedule != null">
+                schedule = #{schedule,jdbcType=VARCHAR},
+            </if>
+            <if test="opTime != null">
+                op_time = #{opTime,jdbcType=BIGINT},
+            </if>
+            <if test="lastVer != null">
+                last_ver = #{lastVer,jdbcType=INTEGER},
+            </if>
+        </set>
+        where customer_register_id = #{customerRegisterId,jdbcType=VARCHAR}
+        and achievement_template_id = #{achievementTemplateId,jdbcType=VARCHAR}
+    </update>
+    <select id="selectRecordByStatus" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_record
+        where customer_register_id = #{customerRegisterId}
+        and status = #{status}
+        and is_valid = 1
+    </select>
+</mapper>

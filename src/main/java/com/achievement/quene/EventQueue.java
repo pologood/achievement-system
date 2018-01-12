@@ -14,7 +14,7 @@ import com.lmax.disruptor.dsl.Disruptor;
 /**
  * EventQueue
  *
- * @author shinan
+ * @author caisl
  * @since 2017-06-03
  *//*
 

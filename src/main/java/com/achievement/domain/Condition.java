@@ -3,10 +3,12 @@
  */
 package com.achievement.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
- * Condition
+ * ScheduleVo
  *
- * @author shinan
+ * @author caisl
  * @since 2017-06-14
  */
 public class Condition {
@@ -19,6 +21,10 @@ public class Condition {
      */
     private String value;
     /**
+     * 条件数量
+     */
+    private short count;
+    /**
      * 条件描述
      */
     private String desc;
@@ -27,9 +33,13 @@ public class Condition {
      */
     private String code;
     /**
-     * 进度值
+     * 进度数量统计
      */
-    private String process;
+    private short process;
+    /**
+     * 进度具体记录
+     */
+    private String processValue = StringUtils.EMPTY;
 
     public String getKey() {
         return key;
@@ -63,11 +73,27 @@ public class Condition {
         this.code = code;
     }
 
-    public String getProcess() {
+    public String getProcessValue() {
+        return processValue;
+    }
+
+    public void setProcessValue(String processValue) {
+        this.processValue = processValue;
+    }
+
+    public short getCount() {
+        return count;
+    }
+
+    public void setCount(short count) {
+        this.count = count;
+    }
+
+    public short getProcess() {
         return process;
     }
 
-    public void setProcess(String process) {
+    public void setProcess(short process) {
         this.process = process;
     }
 }

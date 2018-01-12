@@ -3,13 +3,17 @@
  */
 package com.achievement.event;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * AchievementEvent
  *
- * @author shinan
+ * @author caisl
+ * @desc 成就事件基类
  * @since 2017-06-05
  */
 public abstract class AchievementEvent implements Serializable {
@@ -20,11 +24,11 @@ public abstract class AchievementEvent implements Serializable {
      */
     private String entityId;
     /**
-     * 小二Id集合 完成事件的人
+     * 用户Id集合 完成事件的人
      */
     private List<String> customerRegisterIds;
     /**
-     * 事件来源 1-APP 2-H5
+     * 事件来源 1-APP 2-H5 {@link com.dfire.soa.consumer.fm.constant.AchievementConstant.EventSource}
      */
     private int source;
     /**
@@ -35,6 +39,21 @@ public abstract class AchievementEvent implements Serializable {
      * 成就Id （封装每个handler里面对应的成就Id）
      */
     private String achievementId;
+    /**
+     * 队列名
+     */
+    private String disruptorName;
+
+    public AchievementEvent(){
+
+    }
+    public AchievementEvent(String entityId, List<String> customerRegisterIds, int source, int type) {
+        this.entityId = entityId;
+        this.customerRegisterIds = customerRegisterIds;
+        this.source = source;
+        this.type = type;
+    }
+
     public String getEntityId() {
         return entityId;
     }
@@ -73,5 +92,18 @@ public abstract class AchievementEvent implements Serializable {
 
     public void setAchievementId(String achievementId) {
         this.achievementId = achievementId;
+    }
+
+    @Override
+    public String toString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+    public String getDisruptorName() {
+        return disruptorName;
+    }
+
+    public void setDisruptorName(String disruptorName) {
+        this.disruptorName = disruptorName;
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dfire.soa.consumer.fm.dao.mapper.AchievementPackageMapper">
+    <resultMap id="BaseResultMap" type="com.dfire.soa.consumer.fm.bo.AchievementPackage">
+        <id column="achievement_package_id" property="achievementPackageId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="name_code" property="nameCode" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="BIGINT"/>
+        <result column="end_time" property="endTime" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="op_time" property="opTime" jdbcType="BIGINT"/>
+        <result column="last_ver" property="lastVer" jdbcType="INTEGER"/>
+        <result column="is_valid" property="isValid" jdbcType="SMALLINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    achievement_package_id, name, name_code, start_time, end_time, create_time, op_time, last_ver,
+    is_valid
+  </sql>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from achievement_package
+        where is_valid = 1
+    </select>
+</mapper>

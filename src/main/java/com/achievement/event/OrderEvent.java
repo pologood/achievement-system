@@ -4,11 +4,13 @@
 package com.achievement.event;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * OrderEvent
  *
- * @author shinan
+ * @author caisl
+ * @desc 订单事件（订单模块）
  * @since 2017-06-05
  */
 public class OrderEvent extends AchievementEvent implements Serializable {
@@ -27,9 +29,16 @@ public class OrderEvent extends AchievementEvent implements Serializable {
      */
     private String orderId;
     /**
-     * 事件类型 1-评价订单 2-提交订单
+     * 事件类型 1-评价订单 2-提交订单 {@link com.dfire.soa.consumer.fm.constant.AchievementEnum.OrderActionEnum}
      */
     private int action;
+
+    public OrderEvent(){
+
+    }
+    public OrderEvent(String entityId, List<String> customerRegisterIds, int source, int type) {
+        super(entityId, customerRegisterIds, source, type);
+    }
 
     public String getOrderType() {
         return orderType;
