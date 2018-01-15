@@ -3,11 +3,11 @@
  */
 package com.achievement.handler.order;
 
-import com.dfire.soa.consumer.fm.achievement.handler.AbstractAchieveHandler;
-import com.dfire.soa.consumer.fm.constant.AchievementConstant;
-import com.dfire.soa.consumer.fm.constant.AchievementEnum;
-import com.dfire.soa.consumer.fm.domain.event.AchievementEvent;
-import com.dfire.soa.consumer.fm.domain.event.OrderEvent;
+import com.achievement.constant.AchievementConstant;
+import com.achievement.constant.AchievementEnum;
+import com.achievement.event.AchievementEvent;
+import com.achievement.event.OrderEvent;
+import com.achievement.handler.AbstractAchieveHandler;
 import org.springframework.stereotype.Component;
 
 /**
