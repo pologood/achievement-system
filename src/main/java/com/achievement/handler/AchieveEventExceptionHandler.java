@@ -4,6 +4,8 @@
 package com.achievement.handler;
 
 import com.lmax.disruptor.ExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * AchieveEventExceptionHandler
@@ -12,6 +14,9 @@ import com.lmax.disruptor.ExceptionHandler;
  * @since 2017-06-13
  */
 public class AchieveEventExceptionHandler implements ExceptionHandler {
+
+    private static Logger log = LoggerFactory.getLogger(AchieveEventExceptionHandler.class);
+
     /**
      * 队列名
      */
@@ -23,19 +28,17 @@ public class AchieveEventExceptionHandler implements ExceptionHandler {
 
     @Override
     public void handleEventException(Throwable ex, long sequence, Object event) {
-        LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, ex,"disruptorName " +
-                "= {} Exception processing: sequence = {}, event = {}",disruptorName, sequence, event.toString());
+        log.error("disruptorName = " + disruptorName + " Exception processing: sequence = " + sequence + ", event = " +
+                event.toString() + ex);
     }
 
     @Override
     public void handleOnStartException(Throwable ex) {
-        LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, ex,"disruptorName " +
-                "= {} Exception during onStart(): ",disruptorName);
+        log.error("disruptorName= " + disruptorName + " Exception during onStart(): ", ex);
     }
 
     @Override
     public void handleOnShutdownException(Throwable ex) {
-        LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, ex,"disruptorName " +
-                "= {} Exception during onShutdown(): ",disruptorName);
+        log.error("disruptorName = " + disruptorName + " Exception during onShutdown(): ", ex);
     }
 }

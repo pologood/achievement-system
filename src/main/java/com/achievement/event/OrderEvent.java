@@ -3,6 +3,8 @@
  */
 package com.achievement.event;
 
+import com.achievement.constant.AchievementEnum;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class OrderEvent extends AchievementEvent implements Serializable {
      */
     private String orderId;
     /**
-     * 事件类型 1-评价订单 2-提交订单 {@link com.dfire.soa.consumer.fm.constant.AchievementEnum.OrderActionEnum}
+     * 事件类型 1-评价订单 2-提交订单 {@link AchievementEnum.OrderActionEnum}
      */
     private int action;
 

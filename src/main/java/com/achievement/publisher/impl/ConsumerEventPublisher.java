@@ -15,6 +15,8 @@ import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +41,7 @@ public class ConsumerEventPublisher implements InitializingBean, IEventPublisher
         event.setGoods(arg0.getGoods());
         event.setOfferCount(arg0.getOfferCount());
     };
+    private static Logger log = LoggerFactory.getLogger(ConsumerEventPublisher.class);
     private Disruptor<ConsumerEvent> disruptor;
 
     @Resource
@@ -65,8 +68,7 @@ public class ConsumerEventPublisher implements InitializingBean, IEventPublisher
     public boolean publish(ConsumerEvent event) {
         event.setDisruptorName("ConsumerEventDisruptor");
         if (ringBuffer.remainingCapacity() < bufferSize * 0.01) {
-            LoggerUtil.warn(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER,
-                    "ConsumerEventDisruptor size = {}", ringBuffer.remainingCapacity());
+            log.warn("ConsumerEventDisruptor size = " + ringBuffer.remainingCapacity());
         }
         return ringBuffer.tryPublishEvent(translator, event);//发布事件；
     }

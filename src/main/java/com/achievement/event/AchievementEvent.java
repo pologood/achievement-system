@@ -3,6 +3,8 @@
  */
 package com.achievement.event;
 
+import com.achievement.constant.AchievementConstant;
+import com.achievement.constant.AchievementEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -28,11 +30,11 @@ public abstract class AchievementEvent implements Serializable {
      */
     private List<String> customerRegisterIds;
     /**
-     * 事件来源 1-APP 2-H5 {@link com.dfire.soa.consumer.fm.constant.AchievementConstant.EventSource}
+     * 事件来源 1-APP 2-H5 {@link AchievementConstant.EventSource}
      */
     private int source;
     /**
-     * 事件类型 see{@link com.dfire.soa.consumer.fm.constant.AchievementEnum}
+     * 事件类型 see{@link AchievementEnum}
      */
     private int type;
     /**

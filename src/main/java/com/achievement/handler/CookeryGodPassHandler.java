@@ -3,11 +3,11 @@
  */
 package com.achievement.handler;
 
-import com.dfire.soa.consumer.fm.constant.AchievementConstant;
-import com.dfire.soa.consumer.fm.constant.Constants;
-import com.dfire.soa.consumer.fm.domain.achievement.AchievementDTO;
-import com.dfire.soa.consumer.fm.domain.achievement.Condition;
-import com.dfire.soa.consumer.fm.domain.event.AchievementEvent;
+import com.achievement.constant.AchievementConstant;
+import com.achievement.constant.Constants;
+import com.achievement.domain.AchievementDTO;
+import com.achievement.domain.Condition;
+import com.achievement.event.AchievementEvent;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 

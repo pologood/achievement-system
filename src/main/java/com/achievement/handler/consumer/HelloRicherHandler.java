@@ -3,10 +3,10 @@
  */
 package com.achievement.handler.consumer;
 
-import com.dfire.soa.consumer.fm.achievement.handler.AbstractAchieveHandler;
-import com.dfire.soa.consumer.fm.constant.AchievementConstant;
-import com.dfire.soa.consumer.fm.domain.event.AchievementEvent;
-import com.dfire.soa.consumer.fm.domain.event.ConsumerEvent;
+import com.achievement.constant.AchievementConstant;
+import com.achievement.event.AchievementEvent;
+import com.achievement.event.ConsumerEvent;
+import com.achievement.handler.AbstractAchieveHandler;
 import org.springframework.stereotype.Component;
 
 /**

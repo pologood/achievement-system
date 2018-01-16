@@ -16,10 +16,13 @@ import com.achievement.domain.AchievementMsg;
 import com.achievement.domain.AchievementReward;
 import com.achievement.domain.Condition;
 import com.achievement.event.AchievementEvent;
+import com.achievement.publisher.impl.CommonEventPublisher;
 import com.alibaba.fastjson.JSON;
 import com.lmax.disruptor.EventHandler;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -33,12 +36,11 @@ import java.util.UUID;
  */
 public abstract class AbstractAchieveHandler implements EventHandler<AchievementEvent> {
 
+    private static Logger log = LoggerFactory.getLogger(AbstractAchieveHandler.class);
     @Resource
     protected AchievementRecordDAO achievementRecordDAO;
     @Resource
     protected AchievementTemplateDAO achievementTemplateDAO;
-    @Resource
-    private ISparkService sparkService;
     @Resource
     private AchievementTemplateMapper achievementTemplateMapper;
 
@@ -52,11 +54,9 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
      */
     @Override
     public void onEvent(AchievementEvent event, long sequence, boolean endOfBatch) throws Exception {
-        LoggerUtil.warn(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, "{} {}  handle" +
-                " event event = {}， 位于队列序号={}", event.getDisruptorName(), this.getClass().getSimpleName(), event.toString(), sequence);
+        log.warn(event.getDisruptorName() + this.getClass().getSimpleName() + " handle" + " event event = " + event.toString() + " ， 位于队列序号=" + sequence);
         if (event == null || CollectionUtils.isEmpty(event.getCustomerRegisterIds())) {
-            LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER,
-                    "valid param fail event={}", event != null ? event.toString() : null);
+            log.error("valid param fail event=" + event != null ? event.toString() : null);
             return;
         }
         if (!checkEvent(event)) {
@@ -96,7 +96,7 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
                 }
             }
         } catch (Throwable e) {
-            LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, e);
+            log.error("checkAchievement fail", e);
         }
         return achievementDTO;
     }
@@ -171,31 +171,7 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
      * @param achievementDTO
      */
     protected boolean reward(AchievementDTO achievementDTO) throws Exception {
-        int retry = 3;
-        while (retry > 0) {
-            SparkVo spark = new SparkVo();
-            spark.setChangeValue(achievementDTO.getReward().getFireSeed());
-            spark.setTwodfireMemberId(achievementDTO.getCustomerRegisterId());
-            spark.setSparkAction(EnumSparkAction.ACHIEVE.getSparkAction());
-            Result<Integer> updateSparkResult = sparkService.updateSpark(spark);
-            if (ResultUtil.isModelNotNull(updateSparkResult)) {
-                achievementDTO.getReward().setFireSeed(updateSparkResult.getModel());
-                modifyAchievementRecord(achievementDTO);
-                break;
-            } else {
-                Thread.sleep(100);
-                LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.SPARK_HANDLER, "updateSpark " +
-                        "fail request = {}, errMsg = {}, retry = {}", JSON.toJSON(spark), updateSparkResult
-                        .getMessage(), retry);
-                retry--;
-                //重试三次都失败 记录到日志里面
-                if (retry == 0) {
-                    LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.SPARK_UPDATE_FAIL, "updateSpark " +
-                            "fail request = {}, errMsg = {}", JSON.toJSON(spark), updateSparkResult.getMessage());
-                    return false;
-                }
-            }
-        }
+        //TODO
         return true;
     }
 
@@ -221,8 +197,7 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
             }
             //MQ push message
         } catch (Exception e) {
-            LoggerUtil.error(FireMemberLoggerFactory.ACHIEVEMENT_LOGGER, LogMarker.ACHIEVEMENT_HANDLER, "sendMessage " +
-                    "fail uid= {}, achievementTemplateId = {}", achievementDTO.getAchievementId(), achievementDTO.getCustomerRegisterId());
+            log.error("sendMessage " + "fail uid= {}, achievementTemplateId = {}", achievementDTO.getAchievementId(), achievementDTO.getCustomerRegisterId());
         }
     }
 
