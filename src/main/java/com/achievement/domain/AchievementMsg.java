@@ -1,8 +1,9 @@
 /*
- * Copyright (C) 2009-2017 Hangzhou 2Dfire Technology Co., Ltd.All rights reserved
+ * Copyright (C) 2009-2017 Hangzhou  Technology Co., Ltd.All rights reserved
  */
 package com.achievement.domain;
 
+import com.achievement.constant.AchievementConstant;
 import com.dfire.soa.consumer.fm.constant.AchievementConstant;
 import com.dfire.soa.consumer.fm.vo.FireMemberInfoVo;
 
@@ -51,11 +52,11 @@ public class AchievementMsg implements Serializable {
      */
     private FireMemberInfoVo fireMemberInfo;
     /**
-     * 状态 {@link com.dfire.soa.consumer.fm.constant.AchievementConstant.RecordStatus}
+     * 状态 {@link AchievementConstant.RecordStatus}
      */
     private short status = AchievementConstant.RecordStatus.STATUS_NOT_START;
     /**
-     * 来源 {@link com.dfire.soa.consumer.fm.constant.AchievementConstant.EventSource}
+     * 来源 {@link AchievementConstant.EventSource}
      */
     private int source;
 

@@ -1,12 +1,11 @@
 /*
- * Copyright (C) 2009-2017 Hangzhou 2Dfire Technology Co., Ltd.All rights reserved
+ * Copyright (C) 2009-2017 Hangzhou  Technology Co., Ltd.All rights reserved
  */
 package com.achievement.dao;
 
-import com.dfire.soa.consumer.fm.bo.AchievementTemplate;
-import com.dfire.soa.consumer.fm.constant.Constants;
-import com.dfire.soa.consumer.fm.dao.mapper.AchievementTemplateMapper;
-import com.twodfire.redis.ICacheService;
+import com.achievement.constant.Constants;
+import com.achievement.dao.mapper.AchievementTemplateMapper;
+import com.achievement.dataobject.AchievementTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
