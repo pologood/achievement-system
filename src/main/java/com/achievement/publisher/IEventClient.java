@@ -9,7 +9,7 @@ import com.achievement.event.AchievementEvent;
 /**
  * IEventClient
  *
- * @author shinan
+ * @author caisl
  * @since 2017-06-22
  */
 public interface IEventClient {
