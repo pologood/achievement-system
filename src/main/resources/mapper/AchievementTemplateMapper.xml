@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dfire.soa.consumer.fm.dao.mapper.AchievementTemplateMapper" >
-  <resultMap id="BaseResultMap" type="com.dfire.soa.consumer.fm.bo.AchievementTemplate" >
+<mapper namespace="com.achievement.dao.mapper.AchievementTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.achievement.dataobject.AchievementTemplate" >
     <id column="achievement_template_id" property="achievementTemplateId" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="name_code" property="nameCode" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
     <result column="last_ver" property="lastVer" jdbcType="INTEGER" />
     <result column="is_valid" property="isValid" jdbcType="TINYINT" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.dfire.soa.consumer.fm.bo.AchievementTemplate" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.achievement.dataobject.AchievementTemplate" extends="BaseResultMap" >
     <result column="conditions" property="conditions" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >

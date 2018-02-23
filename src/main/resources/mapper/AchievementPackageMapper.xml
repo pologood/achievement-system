@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dfire.soa.consumer.fm.dao.mapper.AchievementPackageMapper">
-    <resultMap id="BaseResultMap" type="com.dfire.soa.consumer.fm.bo.AchievementPackage">
+<mapper namespace="com.achievement.dao.mapper.AchievementPackageMapper">
+    <resultMap id="BaseResultMap" type="com.achievement.dataobject.AchievementPackage">
         <id column="achievement_package_id" property="achievementPackageId" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="name_code" property="nameCode" jdbcType="VARCHAR"/>

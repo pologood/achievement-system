@@ -23,19 +23,21 @@ public class AchievementEventMessage implements Serializable {
      */
     private List<String> customerRegisterIds;
     /**
-     * 事件来源 1-APP 2-H5  com.dfire.soa.consumer.fm.constant.AchievementConstant.EventSource
+     * 事件来源 1-APP 2-H5
+     *
+     * @link com.achievement.constant.AchievementConstant.EventSource
      */
     private int source;
     /**
-     * 事件类型 see com.dfire.soa.consumer.fm.constant.AchievementEnum
+     * 事件类型 see com.achievement.constant.AchievementEnum
      */
     private int type;
     /**
-     * 订单类型 com.dfire.soa.consumer.fm.constant.AchievementConstant.OrderType
+     * 订单类型 com.achievement.constant.AchievementConstant.OrderType
      */
     private String orderType;
     /**
-     * 动作 com.dfire.soa.consumer.fm.constant.AchievementEnum.OrderActionEnum
+     * 动作 com.achievement.constant.AchievementEnum.OrderActionEnum
      */
     private int action;
     /**

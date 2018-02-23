@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dfire.soa.consumer.fm.dao.mapper.AchievementRecordMapper">
-    <resultMap id="BaseResultMap" type="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+<mapper namespace="com.achievement.dao.mapper.AchievementRecordMapper">
+    <resultMap id="BaseResultMap" type="com.achievement.dataobject.AchievementRecord">
         <id column="achievement_record_id" property="achievementRecordId" jdbcType="VARCHAR"/>
         <result column="customer_register_id" property="customerRegisterId" jdbcType="VARCHAR"/>
         <result column="achievement_template_id" property="achievementTemplateId" jdbcType="VARCHAR"/>
@@ -65,7 +65,7 @@
         </if>
         and is_valid =1
     </select>
-    <insert id="insert" parameterType="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+    <insert id="insert" parameterType="com.achievement.dataobject.AchievementRecord">
     insert into achievement_record (achievement_record_id, customer_register_id, 
       achievement_template_id, achievement_package_id, fire_seed, finish_time,
       status, schedule, create_time, 
@@ -78,7 +78,7 @@
       #{opTime,jdbcType=BIGINT}, #{lastVer,jdbcType=INTEGER}, #{isValid,jdbcType=TINYINT}
       )
   </insert>
-    <update id="updateRecord" parameterType="com.dfire.soa.consumer.fm.bo.AchievementRecord">
+    <update id="updateRecord" parameterType="com.achievement.dataobject.AchievementRecord">
         update achievement_record
         <set>
             <if test="fireSeed != null">
