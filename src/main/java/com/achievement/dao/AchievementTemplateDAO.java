@@ -6,6 +6,7 @@ package com.achievement.dao;
 import com.achievement.constant.Constants;
 import com.achievement.dao.mapper.AchievementTemplateMapper;
 import com.achievement.dataobject.AchievementTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ import java.util.List;
 @Repository
 public class AchievementTemplateDAO {
     @Resource
-    ICacheService cacheService;
+    RedisTemplate redisTemplate;
     @Resource
     AchievementTemplateMapper achievementTemplateMapper;
 
@@ -32,11 +33,11 @@ public class AchievementTemplateDAO {
      * @return
      */
     public AchievementTemplate queryByTemplateId(String achievementTemplateId) {
-        AchievementTemplate achievementTemplate = (AchievementTemplate) cacheService.getObject(Constants.CacheKey
+        AchievementTemplate achievementTemplate = (AchievementTemplate) redisTemplate.opsForValue().get(Constants.CacheKey
                 .ACHIEVEMENT_TEMPLATE_PREFIX + achievementTemplateId);
         if (achievementTemplate == null) {
             achievementTemplate = achievementTemplateMapper.selectByPrimaryKey(achievementTemplateId);
-            cacheService.setObject(Constants.CacheKey.ACHIEVEMENT_TEMPLATE_PREFIX + achievementTemplateId,
+            redisTemplate.opsForValue().set(Constants.CacheKey.ACHIEVEMENT_TEMPLATE_PREFIX + achievementTemplateId,
                     achievementTemplate, Constants.CacheExpireTime.EXPIRE_TIME_ONE_DAY);
         }
         return achievementTemplate;
@@ -48,11 +49,11 @@ public class AchievementTemplateDAO {
      * @return
      */
     public List<AchievementTemplate> queryByPackageId(String achievementPackageId) {
-        List<AchievementTemplate> achievementTemplates = (List<AchievementTemplate>) cacheService.getObject(Constants
+        List<AchievementTemplate> achievementTemplates = (List<AchievementTemplate>) redisTemplate.opsForValue().get(Constants
                 .CacheKey.ACHIEVEMENT_TEMPLATE_PACKAGE_PREFIX + achievementPackageId);
         if (achievementTemplates == null) {
             achievementTemplates = achievementTemplateMapper.selectByPackageId(achievementPackageId);
-            cacheService.setObject(Constants.CacheKey.ACHIEVEMENT_TEMPLATE_PACKAGE_PREFIX + achievementPackageId,
+            redisTemplate.opsForValue().set(Constants.CacheKey.ACHIEVEMENT_TEMPLATE_PACKAGE_PREFIX + achievementPackageId,
                     achievementTemplates, Constants.CacheExpireTime.EXPIRE_TIME_ONE_DAY);
         }
         return achievementTemplates;

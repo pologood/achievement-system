@@ -5,6 +5,7 @@ package com.achievement.dao.mapper;
 
 
 import com.achievement.dataobject.AchievementRecord;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author caisl
  * @since 2017-06-14
  */
+@Mapper
 public interface AchievementRecordMapper {
     /**
      * 根据主键查询记录

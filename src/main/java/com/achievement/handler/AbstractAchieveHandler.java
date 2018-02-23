@@ -16,7 +16,6 @@ import com.achievement.domain.AchievementMsg;
 import com.achievement.domain.AchievementReward;
 import com.achievement.domain.Condition;
 import com.achievement.event.AchievementEvent;
-import com.achievement.publisher.impl.CommonEventPublisher;
 import com.alibaba.fastjson.JSON;
 import com.lmax.disruptor.EventHandler;
 import org.apache.commons.collections.CollectionUtils;
@@ -41,8 +40,6 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
     protected AchievementRecordDAO achievementRecordDAO;
     @Resource
     protected AchievementTemplateDAO achievementTemplateDAO;
-    @Resource
-    private AchievementTemplateMapper achievementTemplateMapper;
 
     /**
      * 执行事件
@@ -85,7 +82,7 @@ public abstract class AbstractAchieveHandler implements EventHandler<Achievement
             if (isAchieveCompleted(record)) {
                 return achievementDTO;
             }
-            AchievementTemplate achievementTemplate = achievementTemplateMapper.selectByPrimaryKey(event.getAchievementId());
+            AchievementTemplate achievementTemplate = achievementTemplateDAO.queryByTemplateId(event.getAchievementId());
             if (achievementTemplate != null) {
                 if (isAchieveEffect(achievementTemplate.getStartTime(), achievementTemplate.getEndTime())) {
                     assembleAchievementDTO(achievementDTO, achievementTemplate, record);

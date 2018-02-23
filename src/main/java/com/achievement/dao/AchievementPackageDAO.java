@@ -6,6 +6,7 @@ package com.achievement.dao;
 import com.achievement.constant.Constants;
 import com.achievement.dao.mapper.AchievementPackageMapper;
 import com.achievement.dataobject.AchievementPackage;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -21,7 +22,7 @@ import java.util.List;
 @Repository
 public class AchievementPackageDAO {
     @Resource
-    ICacheService cacheService;
+    RedisTemplate redisTemplate;
     @Resource
     AchievementPackageMapper achievementPackageMapper;
     /**
@@ -30,10 +31,10 @@ public class AchievementPackageDAO {
      * @return
      */
     public List<AchievementPackage> queryAll() {
-        List<AchievementPackage> achievementPackages = (List<AchievementPackage>) cacheService.getObject(Constants.CacheKey.ACHIEVEMENT_PACKAGE_ALL);
+        List<AchievementPackage> achievementPackages = (List<AchievementPackage>) redisTemplate.opsForValue().get(Constants.CacheKey.ACHIEVEMENT_PACKAGE_ALL);
         if (CollectionUtils.isEmpty(achievementPackages)) {
             achievementPackages = achievementPackageMapper.queryAll();
-            cacheService.setObject(Constants.CacheKey.ACHIEVEMENT_PACKAGE_ALL, achievementPackages, Constants.CacheExpireTime.EXPIRE_TIME_ONE_DAY);
+            redisTemplate.opsForValue().set(Constants.CacheKey.ACHIEVEMENT_PACKAGE_ALL, achievementPackages, Constants.CacheExpireTime.EXPIRE_TIME_ONE_DAY);
         }
         return achievementPackages;
     }

@@ -4,8 +4,6 @@
 package com.achievement.domain;
 
 import com.achievement.constant.AchievementConstant;
-import com.dfire.soa.consumer.fm.constant.AchievementConstant;
-import com.dfire.soa.consumer.fm.vo.FireMemberInfoVo;
 
 import java.io.Serializable;
 
@@ -47,10 +45,6 @@ public class AchievementMsg implements Serializable {
      * 成就图片地址
      */
     private String picUrl;
-    /**
-     * 会员信息
-     */
-    private FireMemberInfoVo fireMemberInfo;
     /**
      * 状态 {@link AchievementConstant.RecordStatus}
      */
@@ -130,13 +124,5 @@ public class AchievementMsg implements Serializable {
 
     public void setAchievementRecordId(String achievementRecordId) {
         this.achievementRecordId = achievementRecordId;
-    }
-
-    public FireMemberInfoVo getFireMemberInfo() {
-        return fireMemberInfo;
-    }
-
-    public void setFireMemberInfo(FireMemberInfoVo fireMemberInfo) {
-        this.fireMemberInfo = fireMemberInfo;
     }
 }

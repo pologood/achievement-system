@@ -4,6 +4,7 @@
 package com.achievement.dao.mapper;
 
 import com.achievement.dataobject.AchievementPackage;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author caisl
  * @since 2017-06-14
  */
+@Mapper
 public interface AchievementPackageMapper {
     /**
      * 查询所有成就包信息
