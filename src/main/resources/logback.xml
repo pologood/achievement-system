@@ -96,23 +96,9 @@
     <logger name="java.sql.Statement" level="DEBUG"/>
     <logger name="java.sql.PreparedStatement" level="DEBUG"/>
 
-
-    <!--error错误日志 additivity="false"表示不向上传递 -->
-    <!-- <logger name="com.test" level="error" > -->
-    <!-- <appender-ref ref="ERROR" /> -->
-    <!-- </logger> -->
-    <!--info日志 -->
-    <logger name="com.test" level="info" additivity="false">
-        <appender-ref ref="INFO"/>
+    <logger name="com.achievement" level="info" additivity="false">
+        <appender-ref ref="STDOUT"/>
     </logger>
-    <!--访问日志 -->
-    <!-- <logger name="com.test" level="info" additivity="false"> -->
-    <!-- <appender-ref ref="ACCESS" /> -->
-    <!-- </logger> -->
-    <!--系统用户操作日志 -->
-    <!-- <logger name="com.test" level="info" additivity="false"> -->
-    <!-- <appender-ref ref="SYS-USER" /> -->
-    <!-- </logger> -->
 
     <root>
         <level value="INFO"/>
