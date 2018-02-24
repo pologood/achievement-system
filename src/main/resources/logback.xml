@@ -102,6 +102,6 @@
 
     <root>
         <level value="INFO"/>
-        <appender-ref ref="stdout"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
