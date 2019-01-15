@@ -1,6 +1,4 @@
-/*
- * Copyright (C) 2009-2017 Hangzhou  Technology Co., Ltd.All rights reserved
- */
+
 package com.achievement.factory;
 
 import java.util.concurrent.ThreadFactory;
